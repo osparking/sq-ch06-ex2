@@ -9,13 +9,10 @@ import util.MyUtil;
 
 @Service
 public class CommentService {
-	Logger logger = Logger.getLogger(CommentService.class.getName());
+	Logger logger = MyUtil.logger(CommentService.class.getName());
 	
 	public String publishComment(Comment comment) {
-		logger.addHandler(MyUtil.handler);
-		logger.setUseParentHandlers(false);
 		logger.info("출판한 코맨트: " + comment.getText());
 		return "성공";
 	}
-
 }
