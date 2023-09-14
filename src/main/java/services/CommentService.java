@@ -11,10 +11,11 @@ import util.MyUtil;
 public class CommentService {
 	Logger logger = Logger.getLogger(CommentService.class.getName());
 	
-	public void publishComment(Comment comment) {
+	public String publishComment(Comment comment) {
 		logger.addHandler(MyUtil.handler);
 		logger.setUseParentHandlers(false);
 		logger.info("출판한 코맨트: " + comment.getText());
+		return "성공";
 	}
 
 }
