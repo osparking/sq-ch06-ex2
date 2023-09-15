@@ -15,17 +15,20 @@ public class LoggingAspect {
 	Logger logger = MyUtil.logger(LoggingAspect.class.getName());
 
 	@Around("execution(* services.*.*(..))")
-	public void log(ProceedingJoinPoint joinPoint) {
+	public Object log(ProceedingJoinPoint joinPoint) {
 		logger.info("차단 후, 원 메소드 호출 전");
 		String methodName = joinPoint.getSignature().getName();
 		Object [] arguments = joinPoint.getArgs();
 		logger.info("메소드명: " + methodName);
 		logger.info("인자 목록: " + Arrays.asList(arguments));
+		Object result = null;
 		try {
-			joinPoint.proceed();
+			result = joinPoint.proceed();
 		} catch (Throwable e1) {
 			e1.printStackTrace();
 		}
 		logger.info("원 메소드 실행 후");
+		
+		return result;
 	}
 }
