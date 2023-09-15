@@ -24,6 +24,7 @@ public class LoggingAspect {
 		Object result = null;
 		try {
 			result = joinPoint.proceed();
+			logger.info("반환값: " + result);
 		} catch (Throwable e1) {
 			e1.printStackTrace();
 		}
